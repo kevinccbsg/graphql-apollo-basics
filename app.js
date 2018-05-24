@@ -11,4 +11,4 @@ app.get('/', (req, res) => {
   res.send('Hi');
 });
 
-app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
+module.exports = app;
