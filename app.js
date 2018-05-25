@@ -20,20 +20,8 @@ app.use('/graphql', graphqlExpress({
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-module.exports = app;
-
-const { graphql } = require('graphql');
-
-const query = `
-  query {
-    contacts {
-      name
-    }
-  }
-`;
-
 if (process.env.MOCK) {
   mockServer();
 }
 
-graphql(schema, query).then((result) => console.log('Got result', result.data.contacts));
+module.exports = app;

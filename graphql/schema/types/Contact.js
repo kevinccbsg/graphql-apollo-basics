@@ -1,7 +1,13 @@
 
 module.exports = `
   type Contact {
-    name: String,
+    name: String
     lastName: String
+    phone: String
+    companyName: String
+    address: String
+    country: String
+    city: String
+    friends: [Contact]
   }
 `;
