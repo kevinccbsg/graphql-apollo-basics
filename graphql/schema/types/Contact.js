@@ -8,6 +8,5 @@ module.exports = `
     address: String
     country: String
     city: String
-    friends: [Contact]
   }
 `;

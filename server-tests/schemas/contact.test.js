@@ -14,7 +14,6 @@ describe('Contact schema', () => {
     'country',
     'city',
   ];
-  const subSchema = ['friends'];
   
   beforeAll(() => {
     MockServer = mockServer(schema);
@@ -26,15 +25,12 @@ describe('Contact schema', () => {
       query {
         contacts {
           ${schemaFields.join('\n')}
-          friends {
-            name
-          }
         }
       }
     `;
     const result = await MockServer.query(query);
     const results = result.data.contacts;
     expect(_.isArray(results)).toBe(true);
-    expect(_.isEqual(Object.keys(results[0]), schemaFields.concat(subSchema))).toBe(true);
+    expect(_.isEqual(Object.keys(results[0]), schemaFields)).toBe(true);
   });
 });
