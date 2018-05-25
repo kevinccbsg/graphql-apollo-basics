@@ -14,8 +14,14 @@ app.get('/', (req, res) => {
   res.send('Hi');
 });
 
-app.use('/graphql', graphqlExpress({
-  schema,
+app.use('/graphql', graphqlExpress((req) => {
+  console.log('middleware');
+  return {
+    schema,
+    context: {
+      user: 'demo',
+    },
+  };
 }));
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
