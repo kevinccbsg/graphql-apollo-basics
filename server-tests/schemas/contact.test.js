@@ -6,6 +6,7 @@ const appMockFunctions = require('./../../graphql/mockServer');
 describe('Contact schema', () => {
   let MockServer;
   const schemaFields = [
+    'id',
     'name',
     'lastName',
     'phone',

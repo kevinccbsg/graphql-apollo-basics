@@ -1,6 +1,7 @@
 
 module.exports = `
   type Contact {
+    id: ID!
     name: String
     lastName: String
     phone: String

@@ -7,6 +7,7 @@ describe('Contact testing', () => {
     const query = `
       query {
         contacts {
+          id
           name
           lastName
           phone
