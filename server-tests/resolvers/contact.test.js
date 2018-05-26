@@ -3,21 +3,21 @@ const schema = require('./../../graphql/schema');
 const { contacts, newContact } = require('../fixtures/contact-fixture');
 
 describe('Contact testing', () => {
-  it('Contact list', async () => {
-    const query = `
-      query {
-        contacts {
-          id
-          name
-          lastName
-          phone
-          companyName
-          address
-          country
-          city
-        }
+  const query = `
+    query {
+      contacts {
+        id
+        name
+        lastName
+        phone
+        companyName
+        address
+        country
+        city
       }
-    `;
+    }
+  `;
+  it('Contact list', async () => {
     const result = await graphql(schema, query, null, { user: 'test' });
     const results = result.data.contacts;
     expect(results).toEqual(contacts);
@@ -25,7 +25,7 @@ describe('Contact testing', () => {
 
   it('New Contact', async () => {
     const mutation = `
-      mutation createContact($newContact: NewContact){
+      mutation createNewContact($newContact: NewContact){
         createContact(contact: $newContact) {
           name
           lastName
@@ -33,9 +33,11 @@ describe('Contact testing', () => {
         }
       }
     `;
-    const result = await graphql(schema, mutation, null, { newContact });
-    console.log(result);
-    const results = result.data.contact;
+    const result = await graphql(schema, mutation, null, { user: 'test' }, { newContact });
+    const results = result.data.createContact;
     expect(results).toEqual(newContact);
+    const getContact = await graphql(schema, query, null, { user: 'test' });
+    const { contacts } = getContact.data;
+    expect(contacts.length).toEqual(contacts.length);
   });
 });

@@ -10,4 +10,10 @@ module.exports = `
     country: String
     city: String
   }
+
+  input NewContact {
+    name: String!
+    lastName: String!
+    phone: String!
+  }
 `;

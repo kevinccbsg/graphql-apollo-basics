@@ -10,6 +10,12 @@ const contact = {
   city: 'North River',
 };
 
+const newContact = {
+  name: 'Ms. New',
+  lastName: 'New',
+  phone: '535-998-5575',
+};
+
 const contacts = [
   contact,
   contact,
@@ -19,4 +25,5 @@ const contacts = [
 module.exports = {
   contact,
   contacts,
+  newContact,
 };

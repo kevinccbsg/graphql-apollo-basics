@@ -11,6 +11,19 @@ const contacts = async (_, params, ctx) => {
   }
 };
 
+const createContact = async (_, { contact }, ctx) => {
+  try {
+    const contactDDBB = new Contact({ development: true });
+    await contactDDBB.connect();
+    const results = await contactDDBB.createContact(contact);
+    return contact;
+  } catch (err) {
+    throw err;
+  }
+  return null;
+};
+
 module.exports = {
   contacts,
+  createContact,
 };

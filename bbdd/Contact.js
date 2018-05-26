@@ -21,6 +21,13 @@ class Contact {
     // Implement datadabse
   }
 
+  createContact(contact) {
+    if (this.options.development) {
+      contacts.push(contact);
+      return Promise.resolve(contact);
+    }
+  }
+
   dissConnect() {
     if (this.options.development) {
       return Promise.resolve('Successfully dissconected');
