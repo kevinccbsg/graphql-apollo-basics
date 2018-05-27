@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag';
 import { ApolloProvider } from 'react-apollo';
 import 'semantic-ui-css/semantic.min.css';
 import './styles/style.styl';

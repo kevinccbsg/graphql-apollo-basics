@@ -1,18 +1,18 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 
-const ContactItem = () => (
+const ContactItem = ({ item }) => (
   <Card>
     <Card.Content>
       <Image floated="right" size="mini" src="/images/no-image.png" />
       <Card.Header>
-        Steve Sanders
+        {item.name}
       </Card.Header>
       <Card.Meta>
-        Friends of Elliot
+        {item.phone}
       </Card.Meta>
       <Card.Description>
-        Steve wants to add you to the group <strong>best friends</strong>
+        {item.address}
       </Card.Description>
     </Card.Content>
   </Card>
