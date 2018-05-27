@@ -6,10 +6,6 @@ describe('Test the root path', () => {
     request(app).get('/').expect(200)
   ));
 
-  it('should response the 404 for a random route', () => (
-    request(app).get('/randomroute').expect(404)
-  ));
-
   it('should response `/graphiql` STATUS 200', () => (
     request(app).get('/graphiql').expect(200)
   ));
