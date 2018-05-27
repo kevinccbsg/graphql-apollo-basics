@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
+import ContactItem from './components/ContactItem';
 
 class App extends Component {
   constructor() {
@@ -9,7 +10,10 @@ class App extends Component {
 
   render() {
     return (
-      <Header />
+      <div class="app-container">
+        <Header />
+        <ContactItem />
+      </div>
     );
   }
 }
