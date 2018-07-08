@@ -17,22 +17,23 @@ class App extends Component {
 
   handleSearch(input) {
     this.props.searchAction(input.target.value);
+    this.props.loadMoreContacts(input.target.value);
   }
 
   render() {
+    console.log('render');
     const { searchText, data } = this.props;
     return (
       <div className="app-container">
         <Header />
         <input onChange={this.handleSearch} />
-
           {data.error && (
             <p>Error :(</p>
           )}
           {data.loading && (
             <p>Loading...</p>
           )}
-          {!data.loading && (
+          {(data.contacts && !data.loading) && (
             data.contacts
             .filter(obj => {
               if (!searchText) return true;
@@ -64,15 +65,46 @@ const mapDipatchToProps = dispatch => (
   }, dispatch)
 );
 
+App.defaultProps = {
+  data: {},
+};
+
+const AGENDA_QUERY = gql`{
+  contacts {
+    id
+    name
+    phone
+    address
+  }
+}`;
+
 export default compose(
   withApollo,
-  graphql(gql`{
-    contacts {
-      id
-      name
-      phone
-      address
-    }
-  }`),
   connect(mapStateToProps, mapDipatchToProps),
+  graphql(AGENDA_QUERY, {
+    options: (props) => {
+      console.log(props);
+      return {
+        ...props,
+        configOption: true,
+      };
+    },
+    props: (data) => {
+      console.log('2');
+      console.log(data);
+      return {
+        ...data,
+        loadMoreContacts: (value) => data.data.fetchMore({
+          query: AGENDA_QUERY,
+          updateQuery: (previousResult, { fetchMoreResult, variables }) => {
+            console.log(previousResult);
+            console.log(fetchMoreResult);
+            return {
+              contacts: fetchMoreResult.contacts,
+            };
+          },
+        }),
+      };
+    },
+  }),
 )(App);
