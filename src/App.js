@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Query } from 'react-apollo';
+import { Query, withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import Header from './components/Header';
 import ContactItem from './components/ContactItem';
@@ -8,6 +8,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {};
+  }
+
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
@@ -40,4 +44,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withApollo(App);
